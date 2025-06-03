@@ -5,18 +5,32 @@
 % Divide and conquer strategy
 
 
-a= [3,6,8,10,12,17,25,29,31,36,42,47,53,55,62];
+%Binary Search
 
-low=1;
-high = length(a);
+arr=[3,6,8,12,14,17,25,29,31,36,42,47,53,55,62];
 
-mid = (low + high) / 2
+target = 12;
+found = false;
+low = 1;
+high = length(arr);
+index = -1;   
 
-target = 42;
-
-if(a(mid) == target)
-     fprintf('The element is found at the index %d ',mid);
-elseif (a(mid) > target)
-    high= mid -1;
-elseif (a(mid) < target)
+while low <= high
+    mid = floor((low + high) / 2); 
+    if arr(mid) == target
+        found = true;
+        index = mid;  
+        break;
+    elseif arr(mid) < target
+        low = mid + 1;  
+    else
+        high = mid - 1;  
+    end
+end
  
+
+if found
+    fprintf("Target element is found at index: %d \n", index);
+else
+    fprintf("Target element is not found \n");
+end
